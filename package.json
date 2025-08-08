@@ -1,0 +1,28 @@
+{
+  "name": "@aiot/shared-packages",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AIOT shared packages and utilities",
+  "main": "index.ts",
+  "exports": {
+    "./AuthMiddleware.js": "./AuthMiddleware.ts",
+    "./ControllerResult.js": "./ControllerResult.ts",
+    "./ErrorHandleMiddleware.js": "./ErrorHandleMiddleware.ts",
+    "./PermissionMiddleware.js": "./PermissionMiddleware.ts",
+    "./RequestResult.js": "./RequestResult.ts",
+    "./ServiceResult.js": "./ServiceResult.ts",
+    "./WebSocketAuthMiddleware.js": "./WebSocketAuthMiddleware.ts",
+    "./loggerConfig.js": "./loggerConfig.ts",
+    "./serverConfig.js": "./serverConfig.ts",
+    "./database/MongoDBConfig.js": "./database/MongoDBConfig.ts",
+    "./database/MysqlDBConfig.js": "./database/MysqlDBConfig.ts",
+    "./database/redisConfig.js": "./database/redisConfig.ts",
+    "./types/ApiResponseType.js": "./types/ApiResponseType.ts",
+    "./types/UserType.js": "./types/UserType.ts",
+    "./types/dependency-injection.js": "./types/dependency-injection.ts"
+  },
+  "files": [
+    "**/*.ts",
+    "**/*.js"
+  ]
+}
