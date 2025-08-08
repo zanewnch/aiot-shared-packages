@@ -84,7 +84,7 @@ export const TYPES = {
     DroneCommandQueriesSvc: Symbol.for('DroneCommandQueriesSvc'),
     DroneCommandCommandsSvc: Symbol.for('DroneCommandCommandsSvc'),
     
-    // === 前端服務相關（fe 使用）===
+    // === 前端服務相關（feSetting 使用）===
     // 使用者偏好服務
     UserPreferenceQueriesSvc: Symbol.for('UserPreferenceQueriesSvc'),
     UserPreferenceCommandsSvc: Symbol.for('UserPreferenceCommandsSvc'),
