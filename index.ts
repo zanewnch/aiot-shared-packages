@@ -2,24 +2,25 @@
 // 這個文件導出所有共享的工具、中間件、配置和類型
 
 // 中間件導出
-export { default as AuthMiddleware } from './AuthMiddleware';
-export { default as ErrorHandleMiddleware } from './ErrorHandleMiddleware';
-export { default as PermissionMiddleware } from './PermissionMiddleware';
-export { default as WebSocketAuthMiddleware } from './WebSocketAuthMiddleware';
+export * from './AuthMiddleware';
+export * from './ErrorHandleMiddleware';
+export * from './PermissionMiddleware';
+export * from './WebSocketAuthMiddleware';
+export { SimplePermissionMiddleware, simplePermissionMiddleware } from './SimplePermissionMiddleware';
 
 // 結果類型導出
-export { default as ControllerResult } from './ControllerResult';
-export { default as ServiceResult } from './ServiceResult';
-export { default as RequestResult } from './RequestResult';
+export * from './ControllerResult';
+export * from './ServiceResult';
+export * from './RequestResult';
 
 // 配置導出
-export { default as loggerConfig } from './loggerConfig';
-export { default as serverConfig } from './serverConfig';
+export * from './loggerConfig';
+export * from './serverConfig';
 
 // 資料庫配置導出
-export { default as MongoDBConfig } from './database/MongoDBConfig';
-export { default as MysqlDBConfig } from './database/MysqlDBConfig';
-export { default as redisConfig } from './database/redisConfig';
+export * from './database/MongoDBConfig';
+export * from './database/MysqlDBConfig';
+export * from './database/redisConfig';
 
 // 類型定義導出
 export * from './types/ApiResponseType';

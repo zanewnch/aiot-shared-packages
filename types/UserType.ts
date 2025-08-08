@@ -76,4 +76,6 @@ export interface JwtUserType {
     id: number;
     /** 使用者名稱 */
     username: string;
+    /** 使用者角色清單 */
+    roles?: string[];
 }
