@@ -94,3 +94,6 @@ junit.xml
 # Backup files
 *.bak
 *.backup
+
+# Windows Zone.Identifier files
+*:Zone.Identifier
