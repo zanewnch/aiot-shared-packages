@@ -25,7 +25,6 @@ export * from './database/redisConfig';
 // 類型定義導出
 export * from './types/ApiResponseType';
 export * from './types/UserType';
-export * from './types/dependency-injection';
 
 // 常用工具函數
 export * from './utils/consul';
