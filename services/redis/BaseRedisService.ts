@@ -18,7 +18,7 @@
 
 import { injectable } from 'inversify';
 import type { RedisClientType } from 'redis';
-import { getRedisClient } from './configs/RedisConfig';
+import { getRedisClient } from '../../configs/RedisConfig';
 
 /**
  * Redis 連線配置選項
