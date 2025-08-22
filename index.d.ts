@@ -1,13 +1,13 @@
-export { BaseRedisService, type RedisConnectionOptions } from './BaseRedisService';
-export { redisConnectionManager, getRedisClient, initializeRedis } from './RedisConnectionManager';
-export { loggerDecorator, type Logger } from './patterns/LoggerDecorator';
-export { redisConfig } from './configs/RedisConfig';
-export { ResResult } from './utils/ResResult';
-export * from './ControllerResult';
-export * from './RequestResult';
-export * from './utils/consul';
-export * from './utils/grpc';
-export * from './utils/validation';
+export { BaseRedisService, type RedisConnectionOptions } from './BaseRedisService.js';
+export { redisConnectionManager, getRedisClient, initializeRedis } from './RedisConnectionManager.js';
+export { loggerDecorator, type Logger } from './patterns/LoggerDecorator.js';
+export { redisConfig } from './configs/RedisConfig.js';
+export { ResResult } from './utils/ResResult.js';
+export * from './ControllerResult.js';
+export * from './RequestResult.js';
+export * from './utils/consul.js';
+export * from './utils/grpc.js';
+export * from './utils/validation.js';
 /**
  * 套件版本資訊
  */

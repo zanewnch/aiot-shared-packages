@@ -5,34 +5,34 @@
 export { 
     BaseRedisService, 
     type RedisConnectionOptions 
-} from './BaseRedisService';
+} from './BaseRedisService.js';
 
 export { 
     redisConnectionManager, 
     getRedisClient, 
     initializeRedis 
-} from './RedisConnectionManager';
+} from './RedisConnectionManager.js';
 
 // ===== 服務類別 =====
 // JwtBlacklistService 已移除 - JWT 黑名單功能統一由 Gateway 層處理
 
 // ===== 設計模式 =====
-export { loggerDecorator, type Logger } from './patterns/LoggerDecorator';
+export { loggerDecorator, type Logger } from './patterns/LoggerDecorator.js';
 
 // ===== 配置檔案 (Redis) =====
-export { redisConfig } from './configs/RedisConfig';
+export { redisConfig } from './configs/RedisConfig.js';
 
 // ===== 工具函式 =====
-export { ResResult } from './utils/ResResult';
+export { ResResult } from './utils/ResResult.js';
 
 // 結果類型導出 (保留現有的)
-export * from './ControllerResult';
-export * from './RequestResult';
+export * from './ControllerResult.js';
+export * from './RequestResult.js';
 
 // 常用工具函數 (保留現有的)
-export * from './utils/consul';
-export * from './utils/grpc';
-export * from './utils/validation';
+export * from './utils/consul.js';
+export * from './utils/grpc.js';
+export * from './utils/validation.js';
 
 /**
  * 套件版本資訊
