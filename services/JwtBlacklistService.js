@@ -17,9 +17,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 import { createClient } from 'redis';
 import { createHash } from 'crypto';
-import { injectable } from 'inversify';
+import { injectable, inject } from 'inversify';
 /**
  * JWT 黑名單管理服務
  *
@@ -189,6 +192,7 @@ let JwtBlacklistService = class JwtBlacklistService {
 };
 JwtBlacklistService = __decorate([
     injectable(),
+    __param(0, inject('Logger')),
     __metadata("design:paramtypes", [Object])
 ], JwtBlacklistService);
 export { JwtBlacklistService };

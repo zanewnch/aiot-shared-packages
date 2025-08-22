@@ -30,7 +30,7 @@ export class JwtBlacklistService {
     private readonly keyPrefix = 'jwt_blacklist:';
     private logger: Logger;
 
-    constructor(logger: Logger) {
+    constructor(@inject('Logger') logger: Logger) {
         this.logger = logger;
         this.redisClient = createClient({
             url: process.env.REDIS_URL || 'redis://aiot-redis:6379'
