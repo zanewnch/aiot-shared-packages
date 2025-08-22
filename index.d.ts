@@ -1,6 +1,5 @@
 export { BaseRedisService, type RedisConnectionOptions } from './BaseRedisService';
 export { redisConnectionManager, getRedisClient, initializeRedis } from './RedisConnectionManager';
-export { JwtBlacklistService, type Logger as JwtLogger } from './services/JwtBlacklistService';
 export { loggerDecorator, type Logger } from './patterns/LoggerDecorator';
 export { redisConfig } from './configs/RedisConfig';
 export { ResResult } from './utils/ResResult';
