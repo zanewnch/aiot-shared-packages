@@ -14,7 +14,7 @@ export {
 } from './RedisConnectionManager';
 
 // ===== 服務類別 =====
-export { JwtBlacklistService, type Logger as JwtLogger } from './services/JwtBlacklistService';
+// JwtBlacklistService 已移除 - JWT 黑名單功能統一由 Gateway 層處理
 
 // ===== 設計模式 =====
 export { loggerDecorator, type Logger } from './patterns/LoggerDecorator';
