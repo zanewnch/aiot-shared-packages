@@ -11,6 +11,7 @@
 
 import { createClient, RedisClientType } from 'redis';
 import { createHash } from 'crypto';
+import { injectable, inject } from 'inversify';
 
 export interface Logger {
   info(message: string, ...args: any[]): void;
@@ -23,6 +24,7 @@ export interface Logger {
  * 
  * 負責管理已失效的 JWT token，防止登出後的 token 被重複使用
  */
+@injectable()
 export class JwtBlacklistService {
     private redisClient: RedisClientType;
     private readonly keyPrefix = 'jwt_blacklist:';

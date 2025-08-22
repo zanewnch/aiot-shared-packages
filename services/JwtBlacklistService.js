@@ -8,14 +8,24 @@
  * @version 1.0.0
  * @since 2025-08-16
  */
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 import { createClient } from 'redis';
 import { createHash } from 'crypto';
+import { injectable } from 'inversify';
 /**
  * JWT 黑名單管理服務
  *
  * 負責管理已失效的 JWT token，防止登出後的 token 被重複使用
  */
-export class JwtBlacklistService {
+let JwtBlacklistService = class JwtBlacklistService {
     constructor(logger) {
         this.keyPrefix = 'jwt_blacklist:';
         this.logger = logger;
@@ -176,4 +186,9 @@ export class JwtBlacklistService {
             this.logger.error('Failed to close JWT Blacklist Redis connection:', error);
         }
     }
-}
+};
+JwtBlacklistService = __decorate([
+    injectable(),
+    __metadata("design:paramtypes", [Object])
+], JwtBlacklistService);
+export { JwtBlacklistService };
