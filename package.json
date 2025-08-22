@@ -4,6 +4,7 @@
   "description": "AIOT shared packages and utilities for microservices",
   "main": "index.js",
   "types": "index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "clean": "rimraf lib dist *.js *.d.ts",
