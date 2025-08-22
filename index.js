@@ -1,23 +1,23 @@
 // AIOT Shared Packages - 主要導出文件
 // 這個文件導出所有共享的工具、中間件、配置和類型
 // ===== Redis 相關服務 =====
-export { BaseRedisService } from './BaseRedisService';
-export { redisConnectionManager, getRedisClient, initializeRedis } from './RedisConnectionManager';
+export { BaseRedisService } from './BaseRedisService.js';
+export { redisConnectionManager, getRedisClient, initializeRedis } from './RedisConnectionManager.js';
 // ===== 服務類別 =====
-export { JwtBlacklistService } from './services/JwtBlacklistService';
+export { JwtBlacklistService } from './services/JwtBlacklistService.js';
 // ===== 設計模式 =====
-export { loggerDecorator } from './patterns/LoggerDecorator';
+export { loggerDecorator } from './patterns/LoggerDecorator.js';
 // ===== 配置檔案 (Redis) =====
-export { redisConfig } from './configs/RedisConfig';
+export { redisConfig } from './configs/RedisConfig.js';
 // ===== 工具函式 =====
-export { ResResult } from './utils/ResResult';
+export { ResResult } from './utils/ResResult.js';
 // 結果類型導出 (保留現有的)
-export * from './ControllerResult';
-export * from './RequestResult';
+export * from './ControllerResult.js';
+export * from './RequestResult.js';
 // 常用工具函數 (保留現有的)
-export * from './utils/consul';
-export * from './utils/grpc';
-export * from './utils/validation';
+export * from './utils/consul.js';
+export * from './utils/grpc.js';
+export * from './utils/validation.js';
 /**
  * 套件版本資訊
  */
