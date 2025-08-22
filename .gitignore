@@ -4,13 +4,23 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Build outputs
+# Build outputs (keep compiled files for npm package)
 lib/
-dist/
 build/
 out/
-*.js
-*.d.ts
+
+# Keep root level compiled files and directories for npm
+# These are needed for the package to work when installed
+# !*.js
+# !*.d.ts
+# !configs/**/*.js
+# !configs/**/*.d.ts  
+# !services/**/*.js
+# !services/**/*.d.ts
+# !patterns/**/*.js
+# !patterns/**/*.d.ts
+# !utils/**/*.js  
+# !utils/**/*.d.ts
 
 # Keep source files in TypeScript projects
 !src/**/*.js
