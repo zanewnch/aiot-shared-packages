@@ -1,32 +1,55 @@
 // AIOT Shared Packages - 主要導出文件
 // 這個文件導出所有共享的工具、中間件、配置和類型
 
-// 中間件導出
-export * from './AuthMiddleware';
-export * from './ErrorHandleMiddleware';
-export * from './PermissionMiddleware';
-export * from './WebSocketAuthMiddleware';
-export { SimplePermissionMiddleware, simplePermissionMiddleware } from './SimplePermissionMiddleware';
+// ===== Redis 相關服務 =====
+export { 
+    BaseRedisService, 
+    type RedisConnectionOptions 
+} from './BaseRedisService';
 
-// 結果類型導出
+export { 
+    redisConnectionManager, 
+    getRedisClient, 
+    initializeRedis 
+} from './RedisConnectionManager';
+
+// ===== 服務類別 =====
+export { JwtBlacklistService, type Logger as JwtLogger } from './services/JwtBlacklistService';
+
+// ===== 設計模式 =====
+export { loggerDecorator, type Logger } from './patterns/LoggerDecorator';
+
+// ===== 配置檔案 (Redis) =====
+export { redisConfig } from './configs/RedisConfig';
+
+// ===== 工具函式 =====
+export { ResResult } from './utils/ResResult';
+
+// 結果類型導出 (保留現有的)
 export * from './ControllerResult';
-export * from './ServiceResult';
 export * from './RequestResult';
 
-// 配置導出
-export * from './loggerConfig';
-export * from './serverConfig';
-
-// 資料庫配置導出
-export * from './database/MongoDBConfig';
-export * from './database/MysqlDBConfig';
-export * from './database/redisConfig';
-
-// 類型定義導出
-export * from './types/ApiResponseType';
-export * from './types/UserType';
-
-// 常用工具函數
+// 常用工具函數 (保留現有的)
 export * from './utils/consul';
 export * from './utils/grpc';
 export * from './utils/validation';
+
+/**
+ * 套件版本資訊
+ */
+export const PACKAGE_VERSION = '1.0.0';
+
+/**
+ * 套件名稱
+ */
+export const PACKAGE_NAME = '@aiot/shared-packages';
+
+/**
+ * 套件資訊
+ */
+export const PACKAGE_INFO = {
+    name: PACKAGE_NAME,
+    version: PACKAGE_VERSION,
+    description: 'AIOT 項目共用套件 - Redis 服務、工具函式、型別定義等',
+    author: 'AIOT Team'
+};
