@@ -18,8 +18,7 @@
 
 import { injectable } from 'inversify';
 import type { RedisClientType } from 'redis';
-
-// Logger 將由各個服務自行提供
+import { getRedisClient } from './configs/RedisConfig';
 
 /**
  * Redis 連線配置選項
@@ -110,8 +109,7 @@ export abstract class BaseRedisService {
      */
     private initializeRedisConnection(): void {
         try {
-            // 這裡需要動態引入，避免循環依賴
-            const getRedisClient = this.getRedisClientFactory();
+            // 直接使用統一的 Redis 配置
             this.redisClient = getRedisClient();
             this.isRedisAvailable = true;
             
@@ -130,17 +128,6 @@ export abstract class BaseRedisService {
             );
         }
     }
-
-    /**
-     * 取得 Redis 客戶端工廠函式
-     * 
-     * 子類別必須實作此方法來提供適當的 Redis 客戶端工廠函式
-     * 
-     * @protected
-     * @abstract
-     * @returns Redis 客戶端工廠函式
-     */
-    protected abstract getRedisClientFactory(): () => RedisClientType;
 
     /**
      * 取得 Redis 客戶端實例
