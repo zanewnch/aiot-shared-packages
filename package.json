@@ -24,6 +24,10 @@
   "files": [
     "*.js",
     "*.d.ts",
+    "configs/**/*",
+    "services/**/*",
+    "patterns/**/*",
+    "utils/**/*",
     "database/*.js",
     "database/*.d.ts",
     "types/*.js",
