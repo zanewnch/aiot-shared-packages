@@ -80,4 +80,3 @@ export declare const getRedisClient: () => RedisClientType;
  */
 export declare const initializeRedis: () => Promise<void>;
 export {};
-//# sourceMappingURL=RedisConnectionManager.d.ts.map

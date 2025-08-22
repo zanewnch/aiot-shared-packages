@@ -56,18 +56,6 @@ import { injectable } from 'inversify';
  * ```
  */
 let BaseRedisService = class BaseRedisService {
-    /** Redis 客戶端實例 */
-    redisClient;
-    /** Redis 可用性狀態 */
-    isRedisAvailable = false;
-    /** 服務名稱，用於日誌識別 */
-    serviceName;
-    /** 預設快取 TTL（秒） */
-    defaultTTL;
-    /** 是否啟用詳細日誌 */
-    enableDebugLogs;
-    /** Logger 實例 */
-    logger;
     /**
      * 建構函式
      *
@@ -76,6 +64,10 @@ let BaseRedisService = class BaseRedisService {
      * @param options Redis 連線配置選項
      */
     constructor(options = {}) {
+        /** Redis 客戶端實例 */
+        this.redisClient = null;
+        /** Redis 可用性狀態 */
+        this.isRedisAvailable = false;
         this.serviceName = options.serviceName || this.constructor.name;
         this.defaultTTL = options.defaultTTL || 3600; // 預設 1 小時
         this.enableDebugLogs = options.enableDebugLogs ?? false;

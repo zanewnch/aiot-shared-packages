@@ -129,4 +129,3 @@ export declare class ResResult<T = any> {
         data?: T;
     };
 }
-//# sourceMappingURL=ResResult.d.ts.map

@@ -16,10 +16,8 @@ import { createHash } from 'crypto';
  * 負責管理已失效的 JWT token，防止登出後的 token 被重複使用
  */
 export class JwtBlacklistService {
-    redisClient;
-    keyPrefix = 'jwt_blacklist:';
-    logger;
     constructor(logger) {
+        this.keyPrefix = 'jwt_blacklist:';
         this.logger = logger;
         this.redisClient = createClient({
             url: process.env.REDIS_URL || 'redis://aiot-redis:6379'

@@ -1,31 +1,23 @@
-/**
- * @fileoverview AIOT Shared Packages 主要導出文件
- *
- * 統一導出所有共用的服務、工具函式、型別定義等，
- * 供各個微服務使用。
- *
- * @module AIOTSharedPackages
- * @author AIOT Team
- * @since 1.0.0
- * @version 1.0.0
- */
+// AIOT Shared Packages - 主要導出文件
+// 這個文件導出所有共享的工具、中間件、配置和類型
 // ===== Redis 相關服務 =====
-export { BaseRedisService } from './BaseRedisService.js';
-export { redisConnectionManager, getRedisClient, initializeRedis } from './RedisConnectionManager.js';
-// ===== 工具函式 =====
-export { ResResult } from './utils/ResResult.js';
-// ===== 配置檔案 =====
-export { redisConfig } from './configs/RedisConfig.js';
+export { BaseRedisService } from './BaseRedisService';
+export { redisConnectionManager, getRedisClient, initializeRedis } from './RedisConnectionManager';
 // ===== 服務類別 =====
-export { JwtBlacklistService } from './services/JwtBlacklistService.js';
+export { JwtBlacklistService } from './services/JwtBlacklistService';
 // ===== 設計模式 =====
-export { loggerDecorator } from './patterns/LoggerDecorator.js';
-// ===== 型別定義 (未來擴展) =====
-// export * from './types/index.js';
-// ===== 常數定義 (未來擴展) =====
-// export * from './constants/index.js';
-// ===== 中介軟體 (未來擴展) =====
-// export * from './middleware/index.js';
+export { loggerDecorator } from './patterns/LoggerDecorator';
+// ===== 配置檔案 (Redis) =====
+export { redisConfig } from './configs/RedisConfig';
+// ===== 工具函式 =====
+export { ResResult } from './utils/ResResult';
+// 結果類型導出 (保留現有的)
+export * from './ControllerResult';
+export * from './RequestResult';
+// 常用工具函數 (保留現有的)
+export * from './utils/consul';
+export * from './utils/grpc';
+export * from './utils/validation';
 /**
  * 套件版本資訊
  */

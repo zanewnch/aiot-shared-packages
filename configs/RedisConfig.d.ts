@@ -63,4 +63,3 @@ export declare const redisConfig: RedisConfig;
  */
 export declare const getRedisClient: () => RedisClientType;
 export {};
-//# sourceMappingURL=RedisConfig.d.ts.map

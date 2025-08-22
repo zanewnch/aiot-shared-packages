@@ -26,14 +26,13 @@ import { createClient } from 'redis';
  * @since 1.0.0
  */
 class RedisConnectionManager {
-    /** 單例實例靜態屬性 */
-    static instance;
-    /** Redis 客戶端實例，初始為 null */
-    client = null;
-    /** 連接狀態標記，初始為 false */
-    isConnected = false;
     /** 私有建構函式，防止外部直接實例化 */
-    constructor() { }
+    constructor() {
+        /** Redis 客戶端實例，初始為 null */
+        this.client = null;
+        /** 連接狀態標記，初始為 false */
+        this.isConnected = false;
+    }
     /**
      * 取得 RedisConnectionManager 單例實例
      * 如果實例不存在則建立新實例，確保全域唯一性

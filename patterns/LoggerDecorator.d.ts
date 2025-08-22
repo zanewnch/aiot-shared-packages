@@ -10,4 +10,3 @@ export interface Logger {
     error(message: string, ...args: any[]): void;
 }
 export declare function loggerDecorator(originalFunction: Function, methodName: string, logger: Logger): (...args: any[]) => Promise<any>;
-//# sourceMappingURL=LoggerDecorator.d.ts.map
