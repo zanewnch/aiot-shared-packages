@@ -60,6 +60,7 @@ export class ResResult {
      * @param message 回應訊息
      * @param data 回應資料（可選）
      * @param pagination 分頁資訊（可選）
+     * @returns ResResult 實例
      */
     constructor(status, message, data, pagination) {
         this.status = status;
@@ -110,64 +111,77 @@ export class ResResult {
      * @template T
      * @param message 創建成功訊息
      * @param data 創建的資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static created(message, data) {
-        return new ResResult(201, message, data);
+    static created(message, data, pagination) {
+        return new ResResult(201, message, data, pagination);
     }
     /**
      * 創建錯誤請求回應（400 Bad Request）
      *
      * @param message 錯誤訊息
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static badRequest(message) {
-        return new ResResult(400, message);
+    static badRequest(message, data, pagination) {
+        return new ResResult(400, message, data, pagination);
     }
     /**
      * 創建未授權回應（401 Unauthorized）
      *
      * @param message 未授權訊息，預設為 'Unauthorized'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static unauthorized(message = 'Unauthorized') {
-        return new ResResult(401, message);
+    static unauthorized(message = 'Unauthorized', data, pagination) {
+        return new ResResult(401, message, data, pagination);
     }
     /**
      * 創建禁止存取回應（403 Forbidden）
      *
      * @param message 禁止存取訊息，預設為 'Forbidden'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static forbidden(message = 'Forbidden') {
-        return new ResResult(403, message);
+    static forbidden(message = 'Forbidden', data, pagination) {
+        return new ResResult(403, message, data, pagination);
     }
     /**
      * 創建找不到資源回應（404 Not Found）
      *
      * @param message 找不到資源訊息，預設為 'Not Found'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static notFound(message = 'Not Found') {
-        return new ResResult(404, message);
+    static notFound(message = 'Not Found', data, pagination) {
+        return new ResResult(404, message, data, pagination);
     }
     /**
      * 創建衝突回應（409 Conflict）
      *
      * @param message 衝突訊息
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static conflict(message) {
-        return new ResResult(409, message);
+    static conflict(message, data, pagination) {
+        return new ResResult(409, message, data, pagination);
     }
     /**
      * 創建伺服器錯誤回應（500 Internal Server Error）
      *
      * @param message 伺服器錯誤訊息，預設為 'Internal Server Error'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static internalError(message = 'Internal Server Error') {
-        return new ResResult(500, message);
+    static internalError(message = 'Internal Server Error', data, pagination) {
+        return new ResResult(500, message, data, pagination);
     }
     /**
      * 從 PaginatedResponse 創建分頁成功回應 - 便利方法

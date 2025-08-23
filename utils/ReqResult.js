@@ -49,14 +49,12 @@ export class ReqResult {
      * @param message 響應訊息
      * @param data 響應資料（可選）
      * @param pagination 分頁資訊（可選）
-     * @param error 原始錯誤物件（可選，用於除錯）
      */
-    constructor(status, message, data, pagination, error) {
+    constructor(status, message, data, pagination) {
         this.status = status;
         this.message = message;
         this.data = data;
         this.pagination = pagination;
-        this.error = error;
     }
     /**
      * 從 API 響應創建 ReqResult
@@ -113,7 +111,7 @@ export class ReqResult {
         const status = error.response?.status || 500;
         const message = error.response?.data?.message || error.message || '請求失敗';
         let responseData = error.response?.data?.data;
-        return new ReqResult(status, message, responseData, undefined, error);
+        return new ReqResult(status, message, responseData, undefined);
     }
     /**
      * 從一般錯誤創建 ReqResult
@@ -134,7 +132,79 @@ export class ReqResult {
      * ```
      */
     static fromError(error, defaultMessage = '發生未知錯誤') {
-        return new ReqResult(500, error.message || defaultMessage, undefined, undefined, error);
+        return new ReqResult(500, error.message || defaultMessage, undefined, undefined);
+    }
+    /**
+     * 創建成功回應（200 OK）
+     *
+     * @template T
+     * @param message 成功訊息
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static success(message, data, pagination) {
+        return new ReqResult(200, message, data, pagination);
+    }
+    /**
+     * 創建錯誤請求回應（400 Bad Request）
+     *
+     * @template T
+     * @param message 錯誤訊息
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static badRequest(message, data, pagination) {
+        return new ReqResult(400, message, data, pagination);
+    }
+    /**
+     * 創建未授權回應（401 Unauthorized）
+     *
+     * @template T
+     * @param message 未授權訊息，預設為 'Unauthorized'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static unauthorized(message = 'Unauthorized', data, pagination) {
+        return new ReqResult(401, message, data, pagination);
+    }
+    /**
+     * 創建禁止存取回應（403 Forbidden）
+     *
+     * @template T
+     * @param message 禁止存取訊息，預設為 'Forbidden'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static forbidden(message = 'Forbidden', data, pagination) {
+        return new ReqResult(403, message, data, pagination);
+    }
+    /**
+     * 創建找不到資源回應（404 Not Found）
+     *
+     * @template T
+     * @param message 找不到資源訊息，預設為 'Not Found'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static notFound(message = 'Not Found', data, pagination) {
+        return new ReqResult(404, message, data, pagination);
+    }
+    /**
+     * 創建伺服器錯誤回應（500 Internal Server Error）
+     *
+     * @template T
+     * @param message 伺服器錯誤訊息，預設為 'Internal Server Error'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static internalError(message = 'Internal Server Error', data, pagination) {
+        return new ReqResult(500, message, data, pagination);
     }
     /**
      * 檢查是否為成功結果

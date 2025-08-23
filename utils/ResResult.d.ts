@@ -69,6 +69,7 @@ export declare class ResResult<T = any> {
      * @param message 回應訊息
      * @param data 回應資料（可選）
      * @param pagination 分頁資訊（可選）
+     * @returns ResResult 實例
      */
     constructor(status: number, message: string, data?: T, pagination?: PaginationInfo);
     /**
@@ -99,51 +100,64 @@ export declare class ResResult<T = any> {
      * @template T
      * @param message 創建成功訊息
      * @param data 創建的資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static created<T = any>(message: string, data?: T): ResResult<T>;
+    static created<T = any>(message: string, data?: T, pagination?: PaginationInfo): ResResult<T>;
     /**
      * 創建錯誤請求回應（400 Bad Request）
      *
      * @param message 錯誤訊息
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static badRequest(message: string): ResResult;
+    static badRequest<T = any>(message: string, data?: T, pagination?: PaginationInfo): ResResult<T>;
     /**
      * 創建未授權回應（401 Unauthorized）
      *
      * @param message 未授權訊息，預設為 'Unauthorized'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static unauthorized(message?: string): ResResult;
+    static unauthorized<T = any>(message?: string, data?: T, pagination?: PaginationInfo): ResResult<T>;
     /**
      * 創建禁止存取回應（403 Forbidden）
      *
      * @param message 禁止存取訊息，預設為 'Forbidden'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static forbidden(message?: string): ResResult;
+    static forbidden<T = any>(message?: string, data?: T, pagination?: PaginationInfo): ResResult<T>;
     /**
      * 創建找不到資源回應（404 Not Found）
      *
      * @param message 找不到資源訊息，預設為 'Not Found'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static notFound(message?: string): ResResult;
+    static notFound<T = any>(message?: string, data?: T, pagination?: PaginationInfo): ResResult<T>;
     /**
      * 創建衝突回應（409 Conflict）
      *
      * @param message 衝突訊息
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static conflict(message: string): ResResult;
+    static conflict<T = any>(message: string, data?: T, pagination?: PaginationInfo): ResResult<T>;
     /**
      * 創建伺服器錯誤回應（500 Internal Server Error）
      *
      * @param message 伺服器錯誤訊息，預設為 'Internal Server Error'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static internalError(message?: string): ResResult;
+    static internalError<T = any>(message?: string, data?: T, pagination?: PaginationInfo): ResResult<T>;
     /**
      * 從 PaginatedResponse 創建分頁成功回應 - 便利方法
      *

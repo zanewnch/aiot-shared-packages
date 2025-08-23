@@ -52,8 +52,6 @@ export declare class ReqResult<T = any> {
     readonly data?: T;
     /** 分頁資訊（可選，用於分頁查詢） */
     readonly pagination?: PaginationInfo;
-    /** 原始錯誤物件（如果有的話） */
-    readonly error?: Error;
     /**
      * 建構函式
      *
@@ -61,9 +59,8 @@ export declare class ReqResult<T = any> {
      * @param message 響應訊息
      * @param data 響應資料（可選）
      * @param pagination 分頁資訊（可選）
-     * @param error 原始錯誤物件（可選，用於除錯）
      */
-    constructor(status: number, message: string, data?: T, pagination?: PaginationInfo, error?: Error);
+    constructor(status: number, message: string, data?: T, pagination?: PaginationInfo);
     /**
      * 從 API 響應創建 ReqResult
      * 嚴格驗證響應格式必須符合標準 API 格式：{status, message, data, pagination}
@@ -122,6 +119,66 @@ export declare class ReqResult<T = any> {
      * ```
      */
     static fromError(error: Error, defaultMessage?: string): ReqResult;
+    /**
+     * 創建成功回應（200 OK）
+     *
+     * @template T
+     * @param message 成功訊息
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static success<T = any>(message: string, data?: T, pagination?: PaginationInfo): ReqResult<T>;
+    /**
+     * 創建錯誤請求回應（400 Bad Request）
+     *
+     * @template T
+     * @param message 錯誤訊息
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static badRequest<T = any>(message: string, data?: T, pagination?: PaginationInfo): ReqResult<T>;
+    /**
+     * 創建未授權回應（401 Unauthorized）
+     *
+     * @template T
+     * @param message 未授權訊息，預設為 'Unauthorized'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static unauthorized<T = any>(message?: string, data?: T, pagination?: PaginationInfo): ReqResult<T>;
+    /**
+     * 創建禁止存取回應（403 Forbidden）
+     *
+     * @template T
+     * @param message 禁止存取訊息，預設為 'Forbidden'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static forbidden<T = any>(message?: string, data?: T, pagination?: PaginationInfo): ReqResult<T>;
+    /**
+     * 創建找不到資源回應（404 Not Found）
+     *
+     * @template T
+     * @param message 找不到資源訊息，預設為 'Not Found'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static notFound<T = any>(message?: string, data?: T, pagination?: PaginationInfo): ReqResult<T>;
+    /**
+     * 創建伺服器錯誤回應（500 Internal Server Error）
+     *
+     * @template T
+     * @param message 伺服器錯誤訊息，預設為 'Internal Server Error'
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ReqResult 實例
+     */
+    static internalError<T = any>(message?: string, data?: T, pagination?: PaginationInfo): ReqResult<T>;
     /**
      * 檢查是否為成功結果
      * HTTP 狀態碼在 200-299 範圍內視為成功
