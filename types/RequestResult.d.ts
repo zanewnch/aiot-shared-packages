@@ -8,18 +8,7 @@
  * @version 1.0.0
  * @since 2025-07-26
  */
-/**
- * API 響應的標準格式介面
- * 對應後端 ControllerResult 的結構
- */
-export interface ApiResponseFormat<T = any> {
-    /** HTTP 狀態碼 */
-    status: number;
-    /** 響應訊息 */
-    message: string;
-    /** 響應資料（可選） */
-    data?: T;
-}
+import type { ApiResponseFormat } from './ApiResponseTypes.js';
 /**
  * 請求結果處理類別
  *

@@ -3,15 +3,18 @@ export { redisConnectionManager, getRedisClient, initializeRedis } from './servi
 export { loggerDecorator, type Logger } from './patterns/LoggerDecorator.js';
 export { redisConfig } from './configs/RedisConfig.js';
 export { ResResult } from './utils/ResResult.js';
+export { ReqResult } from './utils/ReqResult.js';
 export * from './types/ControllerResult.js';
 export * from './types/RequestResult.js';
+export * from './types/PaginationTypes.js';
+export * from './types/ApiResponseTypes.js';
 export * from './utils/consul.js';
 export * from './utils/grpc.js';
 export * from './utils/validation.js';
 /**
  * 套件版本資訊
  */
-export declare const PACKAGE_VERSION = "1.0.0";
+export declare const PACKAGE_VERSION = "1.1.0";
 /**
  * 套件名稱
  */

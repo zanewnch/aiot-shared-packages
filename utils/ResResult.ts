@@ -3,13 +3,17 @@
  *
  * 為所有控制器方法提供統一的 HTTP 回應結構，確保 API 回應的一致性。
  * 使用直接建構函式創建，讓開發者清楚知道使用的 HTTP 狀態碼。
+ * 
+ * v2.0.0 更新：增加分頁支援，保持向後兼容。
  *
  * 簡單說：ResResult 處理預期情況，ErrorHandleMiddleware 處理意外情況。
  *
  * @author AIOT Development Team
- * @version 1.0.0
+ * @version 2.0.0
  * @since 2025-07-25
  */
+
+import type { PaginationInfo } from '../types/PaginationTypes';
 
 /**
  * 控制器結果類別
@@ -22,26 +26,33 @@
  *
  * @example
  * ```typescript
- * // 成功回應 (200)
- * return new ResResult(200, '資料獲取成功', userData);
+ * // 一般成功回應 (200)
+ * return ResResult.success('資料獲取成功', userData);
+ *
+ * // 分頁成功回應 (200) - 方法1：使用 successPaginated
+ * return ResResult.successPaginated('用戶列表獲取成功', users, 1, 20, 150);
+ *
+ * // 分頁成功回應 (200) - 方法2：從 PaginatedResponse 創建
+ * const paginatedData = await userService.getUsers(page, pageSize);
+ * return ResResult.fromPaginatedResponse('用戶列表獲取成功', paginatedData);
  *
  * // 創建成功 (201)
- * return new ResResult(201, '用戶創建成功', newUser);
+ * return ResResult.created('用戶創建成功', newUser);
  *
  * // 客戶端錯誤 (400)
- * return new ResResult(400, '請求參數無效');
+ * return ResResult.badRequest('請求參數無效');
  *
  * // 未授權 (401)
- * return new ResResult(401, '請先登入');
+ * return ResResult.unauthorized('請先登入');
  *
  * // 禁止存取 (403)
- * return new ResResult(403, '權限不足');
+ * return ResResult.forbidden('權限不足');
  *
  * // 找不到資源 (404)
- * return new ResResult(404, '用戶不存在');
+ * return ResResult.notFound('用戶不存在');
  *
  * // 伺服器錯誤 (500)
- * return new ResResult(500, '內部伺服器錯誤');
+ * return ResResult.internalError('內部伺服器錯誤');
  * ```
  */
 export class ResResult<T = any> {
@@ -51,6 +62,8 @@ export class ResResult<T = any> {
     public message: string;
     /** 回應資料 */
     public data?: T;
+    /** 分頁資訊（可選，用於分頁查詢） */
+    public pagination?: PaginationInfo;
 
     /**
      * 建構函式
@@ -58,11 +71,13 @@ export class ResResult<T = any> {
      * @param status HTTP 狀態碼
      * @param message 回應訊息
      * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      */
-    constructor(status: number, message: string, data?: T) {
+    constructor(status: number, message: string, data?: T, pagination?: PaginationInfo) {
         this.status = status;
         this.message = message;
         this.data = data;
+        this.pagination = pagination;
     }
 
     /**
@@ -71,10 +86,45 @@ export class ResResult<T = any> {
      * @template T
      * @param message 成功訊息
      * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
      * @returns ResResult 實例
      */
-    static success<T = any>(message: string, data?: T): ResResult<T> {
-        return new ResResult(200, message, data);
+    static success<T = any>(message: string, data?: T, pagination?: PaginationInfo): ResResult<T> {
+        return new ResResult(200, message, data, pagination);
+    }
+
+    /**
+     * 創建分頁成功回應（200 OK）- 專門用於分頁查詢
+     *
+     * @template T
+     * @param message 成功訊息
+     * @param data 分頁資料陣列
+     * @param currentPage 當前頁數
+     * @param pageSize 每頁數量
+     * @param totalCount 總記錄數
+     * @returns ResResult 實例
+     */
+    static successPaginated<T = any>(
+        message: string, 
+        data: T[], 
+        currentPage: number, 
+        pageSize: number, 
+        totalCount: number
+    ): ResResult<T[]> {
+        const totalPages = Math.ceil(totalCount / pageSize);
+        const hasNext = currentPage < totalPages;
+        const hasPrevious = currentPage > 1;
+
+        const paginationInfo: PaginationInfo = {
+            currentPage,
+            pageSize,
+            totalCount,
+            totalPages,
+            hasNext,
+            hasPrevious
+        };
+
+        return new ResResult(200, message, data, paginationInfo);
     }
 
     /**
@@ -150,18 +200,46 @@ export class ResResult<T = any> {
     }
 
     /**
+     * 從 PaginatedResponse 創建分頁成功回應 - 便利方法
+     *
+     * @template T
+     * @param message 成功訊息
+     * @param paginatedResponse 分頁回應物件
+     * @returns ResResult 實例
+     */
+    static fromPaginatedResponse<T = any>(
+        message: string, 
+        paginatedResponse: { data: T[]; pagination: PaginationInfo }
+    ): ResResult<T[]> {
+        return new ResResult(200, message, paginatedResponse.data, paginatedResponse.pagination);
+    }
+
+    /**
+     * 檢查是否為分頁回應
+     *
+     * @returns 是否包含分頁資訊
+     */
+    isPaginated(): boolean {
+        return this.pagination !== undefined;
+    }
+
+    /**
      * 轉換為 JSON 物件
      *
-     * @returns 包含 status, message 和 data 的物件
+     * @returns 包含 status, message, data 和可選 pagination 的物件
      */
-    toJSON(): { status: number; message: string; data?: T } {
-        const result: { status: number; message: string; data?: T } = {
+    toJSON(): { status: number; message: string; data?: T; pagination?: PaginationInfo } {
+        const result: { status: number; message: string; data?: T; pagination?: PaginationInfo } = {
             status: this.status,
             message: this.message
         };
 
         if (this.data !== undefined) {
             result.data = this.data;
+        }
+
+        if (this.pagination !== undefined) {
+            result.pagination = this.pagination;
         }
 
         return result;

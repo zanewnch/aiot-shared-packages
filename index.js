@@ -11,9 +11,12 @@ export { loggerDecorator } from './patterns/LoggerDecorator.js';
 export { redisConfig } from './configs/RedisConfig.js';
 // ===== 工具函式 =====
 export { ResResult } from './utils/ResResult.js';
+export { ReqResult } from './utils/ReqResult.js';
 // ===== 類型定義 =====
 export * from './types/ControllerResult.js';
 export * from './types/RequestResult.js';
+export * from './types/PaginationTypes.js';
+export * from './types/ApiResponseTypes.js';
 // 常用工具函數 (保留現有的)
 export * from './utils/consul.js';
 export * from './utils/grpc.js';
@@ -21,7 +24,7 @@ export * from './utils/validation.js';
 /**
  * 套件版本資訊
  */
-export const PACKAGE_VERSION = '1.0.0';
+export const PACKAGE_VERSION = '1.1.0';
 /**
  * 套件名稱
  */
