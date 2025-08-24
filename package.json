@@ -37,7 +37,7 @@
   "dependencies": {
     "jsonwebtoken": "^9.0.0",
     "bcryptjs": "^2.4.3",
-    "mysql2": "^3.6.0",
+    "pg": "^8.8.0",
     "mongoose": "^7.0.0",
     "redis": "^4.6.0",
     "winston": "^3.10.0",
