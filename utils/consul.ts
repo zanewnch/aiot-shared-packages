@@ -104,7 +104,7 @@ export class ConsulHelper {
         throw new Error(`Failed to discover service: ${response.status} ${response.statusText}`);
       }
 
-      const services = await response.json();
+      const services: any[] = await response.json();
       return services.map((service: any) => ({
         id: service.Service.ID,
         name: service.Service.Service,
