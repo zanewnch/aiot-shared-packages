@@ -3,9 +3,10 @@
 
 // ===== Redis 相關服務 =====
 export { 
-    BaseRedisService, 
-    type RedisConnectionOptions 
+    BaseRedisService
 } from './services/redis/BaseRedisService.js';
+
+export type { RedisConnectionOptions } from './services/redis/BaseRedisService.js';
 
 export { 
     redisConnectionManager, 
@@ -17,7 +18,8 @@ export {
 // JwtBlacklistService 已移除 - JWT 黑名單功能統一由 Gateway 層處理
 
 // ===== 設計模式 =====
-export { loggerDecorator, type Logger } from './patterns/LoggerDecorator.js';
+export { loggerDecorator } from './patterns/LoggerDecorator.js';
+export type { Logger } from './patterns/LoggerDecorator.js';
 
 // ===== 配置檔案 (Redis) =====
 export { redisConfig } from './configs/RedisConfig.js';
@@ -40,7 +42,7 @@ export * from './utils/validation.js';
 /**
  * 套件版本資訊
  */
-export const PACKAGE_VERSION = '1.1.0';
+export const PACKAGE_VERSION = '1.1.4';
 
 /**
  * 套件名稱
