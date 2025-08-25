@@ -214,6 +214,19 @@ export class ResResult<T = any> {
     }
 
     /**
+     * 創建通用錯誤回應 - 向後相容方法
+     *
+     * @param status HTTP 狀態碼
+     * @param message 錯誤訊息
+     * @param data 回應資料（可選）
+     * @param pagination 分頁資訊（可選）
+     * @returns ResResult 實例
+     */
+    static error<T = any>(status: number, message: string, data?: T, pagination?: PaginationInfo): ResResult<T> {
+        return new ResResult(status, message, data, pagination);
+    }
+
+    /**
      * 從 PaginatedResponse 創建分頁成功回應 - 便利方法
      *
      * @template T
