@@ -6,8 +6,6 @@ export {
     BaseRedisService
 } from './services/redis/BaseRedisService.js';
 
-export type { RedisConnectionOptions } from './services/redis/BaseRedisService.js';
-
 export { 
     redisConnectionManager, 
     getRedisClient, 
@@ -19,7 +17,6 @@ export {
 
 // ===== 設計模式 =====
 export { loggerDecorator } from './patterns/LoggerDecorator.js';
-export type { Logger } from './patterns/LoggerDecorator.js';
 
 // ===== 配置檔案 (Redis) =====
 export { redisConfig } from './configs/RedisConfig.js';

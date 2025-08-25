@@ -1,6 +1,6 @@
-export { BaseRedisService, type RedisConnectionOptions } from './services/redis/BaseRedisService.js';
+export { BaseRedisService } from './services/redis/BaseRedisService.js';
 export { redisConnectionManager, getRedisClient, initializeRedis } from './services/redis/RedisConnectionManager.js';
-export { loggerDecorator, type Logger } from './patterns/LoggerDecorator.js';
+export { loggerDecorator } from './patterns/LoggerDecorator.js';
 export { redisConfig } from './configs/RedisConfig.js';
 export { ResResult } from './utils/ResResult.js';
 export { ReqResult } from './utils/ReqResult.js';
@@ -14,7 +14,7 @@ export * from './utils/validation.js';
 /**
  * 套件版本資訊
  */
-export declare const PACKAGE_VERSION = "1.1.0";
+export declare const PACKAGE_VERSION = "1.1.4";
 /**
  * 套件名稱
  */

@@ -12,10 +12,10 @@
 import type { PaginationInfo } from './PaginationTypes.js';
 
 /**
- * API 響應的標準格式介面
+ * API 響應的標準格式類型
  * 對應後端 ResResult 的結構，支援分頁功能
  * 
- * @interface ApiResponseFormat
+ * @type ApiResponseFormat
  * @template T 響應資料的類型，預設為 any
  * 
  * @example
@@ -43,7 +43,7 @@ import type { PaginationInfo } from './PaginationTypes.js';
  * };
  * ```
  */
-export interface ApiResponseFormat<T = any> {
+export type ApiResponseFormat<T = any> = {
     /** HTTP 狀態碼 */
     status: number;
     /** 響應訊息 */
@@ -52,4 +52,4 @@ export interface ApiResponseFormat<T = any> {
     data?: T;
     /** 分頁資訊（可選，用於分頁查詢） */
     pagination?: PaginationInfo;
-}
+};

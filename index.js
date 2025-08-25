@@ -24,7 +24,7 @@ export * from './utils/validation.js';
 /**
  * 套件版本資訊
  */
-export const PACKAGE_VERSION = '1.1.0';
+export const PACKAGE_VERSION = '1.1.4';
 /**
  * 套件名稱
  */
